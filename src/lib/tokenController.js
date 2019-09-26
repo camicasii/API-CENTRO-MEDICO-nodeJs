@@ -25,8 +25,9 @@ module.exports={
   },
   checkToken:async(req,res,next)=>{       
     try{
-    await User.find({tokenId:req.headers.authorization})            
-    next();
+    const check= await User.findOne({tokenId:req.headers.authorization})    
+      if(userjwt!==null||userjwt!==undefined) next();
+      else res.status(401).json({error:"jwt false"})
     }
     catch(err){
       res.status(401).json({error:"jwt false"})
