@@ -1,7 +1,7 @@
 const router =  require('express').Router(); 
 const {signin,signup}= require('../controllers/sing')
 const passport = require('passport');
-const  {sendToken,checkToken} =  require('../lib/tokenController');
+const  {checkToken2} =  require('../lib/tokenController');
 const User  =  require('../models/User');
 
 
