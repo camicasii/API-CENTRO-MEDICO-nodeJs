@@ -8,22 +8,22 @@ router.post('/signup',signup);
 
 
 router.post('/signin',signin)
-router.delete('/signout',checkToken, async(req,res)=>{
-    console.log("paso out");    
+router.get('/signout',checkToken, async(req,res)=>{
+    console.log("paso out");        
+    const jwUser = await  User.find({tokenId:req.headers.authorization})
     
-    const jwUser = await User.findOne({tokenId:req.headers.authorization})
-    console.log("busco user");
-    console.log(userjwt);        
-    if(jwUser!==null||jwUser!==undefined){
-        console.log("paso el si");
-        
-        jwUser.tokenId=null;  
-    console.log("paso el si");
-    console.log(jwUser);
-    //res.status(200)
-    await jwUser.save()
-    res.status(200)
-    }
+    
+        console.log("busco user");    
+        if(jwUser!==null&&jwUser!==undefined){
+            console.log("paso el si");        
+            jwUser.tokenId=null;  
+            await  User.findByIdAndUpdate(jwUser._id,jwUser)
+          return  res.status(200).json({status:"out"})
+            
+        }else res.status(401).json({status:"ou fail"})
+    
+
+    
 })
 
 
