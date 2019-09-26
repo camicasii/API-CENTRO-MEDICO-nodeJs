@@ -30,9 +30,9 @@ module.exports={
       if(userjwt){
         jwt.sign(userjwt.toJSON(), process.env.SECRET, { expiresIn: 31556926 }, async(err, token) => {
           let userjwt2 = await User.findOne({username:req.body.username})
-          userjwt2.tokenId= token.split(" ")[1]
+          userjwt2.tokenId= token
           console.log(userjwt2);
-          console.log(token.split(" ")[1]);
+          console.log(token);
           
           //await userjwt2.save()
           res.status(200).json({
