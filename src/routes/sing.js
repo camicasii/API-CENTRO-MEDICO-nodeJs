@@ -4,22 +4,25 @@ const passport = require('passport');
 const  {checkToken2,checkToken} =  require('../lib/tokenController');
 const User  =  require('../models/User');
 
-
 router.post('/signup',signup);
 
 
 router.post('/signin',signin)
 router.get('/signout',checkToken, async(req,res)=>{
     console.log("paso out");    
+    try{    
     const userjwt = await User.find({tokenId:req.headers.authorization})
     if(userjwt!==null||userjwt!==undefined){
     userjwt.tokenId=null;    
-    await User.findByIdAndUpdate(userjwt._id,userjwt).then(()=>{
-        res.status(200)
-    }).catch(()=>res.status(401))
-}
-else res.status(403)
+    await User.findByIdAndUpdate(userjwt._id,userjwt).then(()=>{res.status(200)})
+    }
+}catch{
+    res.status(401)}
 })
+
+
+
+
 router.get('/issignin',checkToken2)
 
 
