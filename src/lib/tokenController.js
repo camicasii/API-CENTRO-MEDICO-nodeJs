@@ -23,7 +23,7 @@ module.exports={
       next();
     }
   },
-  checkToken:(req,res,next)=>{       
+  checkToken:async(req,res,next)=>{       
     try{
     await User.find({tokenId:req.headers.authorization})            
     next();
