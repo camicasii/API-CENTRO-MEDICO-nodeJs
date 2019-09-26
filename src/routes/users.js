@@ -1,9 +1,9 @@
 const router =  require('express').Router(); 
 const {getData, getDatas, postData, putData, deleteData } = require('../controllers/users');
-const  {checkToken} =  require('../lib/tokenController');
+const  {checkToken2} =  require('../lib/tokenController');
 
 
-router.get('/',checkToken,getDatas)
+router.get('/',checkToken2,getDatas)
 
 router.get('/:id',checkToken,getData)
 
