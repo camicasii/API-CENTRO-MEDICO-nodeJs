@@ -28,7 +28,7 @@ module.exports={
     .catch((e)=>res.json({error:e}))          
     userjwt.password= "null";
       if(userjwt){
-        jwt.sign(userjwt.toJSON(), process.env.SECRET, { expiresIn: 31556926 }, (err, token) => {
+        jwt.sign(userjwt.toJSON(), process.env.SECRET, { expiresIn: 31556926 }, async(err, token) => {
           userjwt.tokenId= token.split(" ")[1]
           await userjwt.save()
           res.status(200).json({
