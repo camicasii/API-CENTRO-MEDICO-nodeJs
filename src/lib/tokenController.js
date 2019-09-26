@@ -2,15 +2,14 @@ const User  =  require('../models/User');
 const vali = require('validator');
 const jwt = require('jsonwebtoken');
 module.exports={ 
-  checkToken:async(req,res,next)=>{   
-    
+  checkToken:(req,res,next)=>{       
     try{
     jwt.verify(req.headers.authorization, process.env.SECRET)
-    res.json(200,{error:"jwt active"})    
+    res.status(200).json({error:"jwt active"})    
     next();
     }
     catch(err){
-      res.json(401,{error:"jwt false"})
+      res.status(401).json({error:"jwt false"})
       next();
     }
   },
@@ -20,14 +19,14 @@ module.exports={
     userjwt.password= "null";
       if(userjwt){
         jwt.sign(userjwt.toJSON(), process.env.SECRET, { expiresIn: 31556926 }, (err, token) => {
-          res.json(200, {
+          res.status(200).json({
             success: true,
             token: "Bearer " + token
           });
         })     
       }
      else{ 
-       res.json(404,{
+       res.status(401).json({
          success: false, error: 401
         })
       }
