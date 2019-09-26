@@ -18,9 +18,11 @@ router.get('/signout',checkToken, async(req,res)=>{
     if(userjwt!==null||userjwt!==undefined){
         console.log("paso el si");
         
-    userjwt.tokenId=null;  
+    userjwt.tokenId="";  
     console.log("paso el si");
-    await userjwt.save()
+    console.log(userjwt);
+    
+    userjwt.save()
     res.status(200)
     }
 }catch{
