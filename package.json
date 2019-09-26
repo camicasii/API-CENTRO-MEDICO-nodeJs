@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node":"12.10.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=production nodemon ./src/index.js",
     "estarts": "cross-env NODE_ENV=Development nodemon ./src/index.js",
-    "webpack": "webpack --mode development --watch ",
-    "start": "concurrently \"nodemon ./src/index.js \" \"webpack --mode development --watch \"",
-    "build": "webpack --mode production"
+    "start":"cross-env NODE_ENV=production node ./src/index.js"
   },
   "keywords": [],
   "author": "",
