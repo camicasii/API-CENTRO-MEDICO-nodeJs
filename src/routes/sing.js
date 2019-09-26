@@ -1,7 +1,7 @@
 const router =  require('express').Router(); 
 const {signin,signup}= require('../controllers/sing')
 const passport = require('passport');
-const  {checkToken2} =  require('../lib/tokenController');
+const  {checkToken2,checkToken} =  require('../lib/tokenController');
 const User  =  require('../models/User');
 
 
@@ -9,8 +9,8 @@ router.post('/signup',signup);
 
 
 router.post('/signin',signin)
-router.post('/signout',async (req,res)=>{
-    const userjwt = await User.findOne({username:req.body.username})
+router.post('/signout',checkToken, (req,res)=>{
+    const userjwt = await User.find({_id:req.body.id})
     userjwt.tokenId=null;
     await userjwt.save();
 })
