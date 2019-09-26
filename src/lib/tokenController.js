@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 module.exports={ 
   checkToken2:(req,res,next)=>{       
     try{
+      console.log("my", req.headers.authorization);
+      
     jwt.verify(req.headers.authorization, process.env.SECRET)    
     next();
     }
