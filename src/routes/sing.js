@@ -8,7 +8,7 @@ router.post('/signup',signup);
 
 
 router.post('/signin',signin)
-router.get('/signout',checkToken, async(req,res)=>{
+router.delete('/signout',checkToken, async(req,res)=>{
     console.log("paso out");    
     try{    
     const userjwt = await User.findOne({tokenId:req.headers.authorization})
