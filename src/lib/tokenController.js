@@ -13,9 +13,19 @@ module.exports={
         next();
       }
   },
-  checkToken:(req,res,next)=>{       
+  checkToken3:(req,res,next)=>{       
     try{
     jwt.verify(req.headers.authorization, process.env.SECRET)    
+    next();
+    }
+    catch(err){
+      res.status(401).json({error:"jwt false"})
+      next();
+    }
+  },
+  checkToken:(req,res,next)=>{       
+    try{
+    await User.find({tokenId:req.headers.authorization})            
     next();
     }
     catch(err){
@@ -31,10 +41,7 @@ module.exports={
         jwt.sign(userjwt.toJSON(), process.env.SECRET, { expiresIn: 31556926 }, async(err, token) => {
           let userjwt2 = await User.findOne({username:req.body.username})
           userjwt2.tokenId= token
-          console.log(userjwt2);
-          console.log(token);
-          
-          //await userjwt2.save()
+          await userjwt2.save()
           res.status(200).json({
             success: true,
             token: "Bearer " + token
