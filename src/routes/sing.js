@@ -14,7 +14,9 @@ router.get('/signout',checkToken, async(req,res)=>{
     const userjwt = await User.find({tokenId:req.headers.authorization})
     if(userjwt!==null||userjwt!==undefined){
     userjwt.tokenId=null;    
-    await userjwt.save().then(()=>{
+    await User.findByIdAndUpdate(userjwt._id,userjwt)
+    
+    userjwt. userjwt.save().then(()=>{
         res.status(200)
     }).catch(()=>res.status(401))
 }
