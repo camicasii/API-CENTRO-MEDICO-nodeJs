@@ -9,8 +9,8 @@ router.post('/signup',signup);
 
 
 router.post('/signin',signin)
-router.post('/signout',checkToken, (req,res)=>{
-    const userjwt = await User.find({_id:req.body.id})
+router.post('/signout',checkToken, async(req,res)=>{
+    let userjwt = await User.find({_id:req.body.id})
     userjwt.tokenId=null;
     await userjwt.save();
 })
