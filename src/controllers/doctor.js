@@ -37,7 +37,7 @@ module.exports={
     deleteData:async(req,res,next)=>{
         const {id} = req.params;        
         const check = true;
-        const data = await Doctor.findById(id).catch(e=>{
+        const data = await Doctor.findByIdAndDelete(id).catch(e=>{
             console.log("error");
             return res.status(404).json( {success:false})            
         })              
