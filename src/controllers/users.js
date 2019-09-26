@@ -2,7 +2,7 @@ const User = require('../models/User');
 module.exports={
      getDatas:async(req,res,next)=>{
         const data = await User.find({})
-        return res.status(404).json(200,{data})        
+        return res.status(404).json({data}).end()
     },
     getData:async(req,res,next)=>{
         const {id} = req.params;        

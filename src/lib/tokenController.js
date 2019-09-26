@@ -2,6 +2,15 @@ const User  =  require('../models/User');
 const vali = require('validator');
 const jwt = require('jsonwebtoken');
 module.exports={ 
+  checkToken2:(req,res,next)=>{       
+    try{
+    jwt.verify(req.headers.authorization, process.env.SECRET)    
+    next();
+    }
+    catch(err){
+      res.status(401).json({error:"jwt false"})      
+    }
+  },
   checkToken:(req,res,next)=>{       
     try{
     jwt.verify(req.headers.authorization, process.env.SECRET)
