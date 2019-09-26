@@ -24,12 +24,14 @@ module.exports={
     }
   },
   sendToken:async(req,res)=>{  
-    const userjwt = await User.findOne({username:req.body.username})
+    let userjwt = await User.findOne({username:req.body.username})
     .catch((e)=>res.json({error:e}))          
     userjwt.password= "null";
       if(userjwt){
         jwt.sign(userjwt.toJSON(), process.env.SECRET, { expiresIn: 31556926 }, async(err, token) => {
           userjwt.tokenId= token.split(" ")[1]
+          console.log(userjwt);
+          
           await userjwt.save()
           res.status(200).json({
             success: true,
