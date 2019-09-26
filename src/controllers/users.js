@@ -2,10 +2,6 @@ const User = require('../models/User');
 module.exports={
     getDatas:async(req,res,next)=>{
         const data = await User.find({}).then(()=>res.json(200,{data}))
-        .catch(e=>{
-            console.log("error");            
-            return res.status(404).jsonp( {success:false})            
-        })     
         
     },
     getData:async(req,res,next)=>{
