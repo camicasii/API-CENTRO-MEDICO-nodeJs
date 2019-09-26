@@ -14,7 +14,7 @@ router.post('/signout',async (req,res)=>{
     userjwt.tokenId=null;
     await userjwt.save();
 })
-router.get('/issignin',checkToken)
+router.get('/issignin',checkToken2)
 
 
 module.exports = router;
