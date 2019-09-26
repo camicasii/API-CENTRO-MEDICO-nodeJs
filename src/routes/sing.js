@@ -24,7 +24,7 @@ router.delete('/signout',checkToken, async(req,res)=>{
     await jwUser.save()
     res.status(200)
     }
-
+})
 
 
 
