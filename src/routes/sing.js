@@ -11,7 +11,7 @@ router.post('/signup',signup);
 router.post('/signin',signin)
 router.get('/signout',checkToken, async(req,res)=>{
     console.log("paso out");    
-    let userjwt = await User.find({tokenId:req.headers.authorization})
+    const userjwt = await User.find({tokenId:req.headers.authorization})
     if(userjwt!==null||userjwt!==undefined){
     userjwt.tokenId=null;    
     await userjwt.save().then(()=>{
