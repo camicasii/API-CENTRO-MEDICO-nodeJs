@@ -41,7 +41,7 @@ async(req,username,password,done)=>{
     newUser.password = await helpers.encryptPassword(password)
     const check = await User.find({username:username})
     if(!check[0]){    
-    await newUser.save()   
+    newUser.save()   
     delete newUser.password;
     return done(null,newUser);
     }

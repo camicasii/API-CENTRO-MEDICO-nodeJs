@@ -18,7 +18,7 @@ module.exports={
     },
     postData:async(req,res,next)=>{        
         const newdata = new Employee(req.body)
-        const data = await newdata.save().catch(e=>{
+        newdata.save().catch(e=>{
             console.log("error");
             return res.status(404).json( {success:false})            
         })
