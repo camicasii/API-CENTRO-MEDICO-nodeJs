@@ -10,13 +10,15 @@ router.post('/signup',signup);
 
 router.post('/signin',signin)
 router.get('/signout',checkToken, async(req,res)=>{
-    console.log("paso out");
-    
-    let userjwt = await User.find({_id:req.body.id})
-    userjwt.tokenId=null;
+    console.log("paso out");    
+    let userjwt = await User.find({tokenId:req.headers.authorization})
+    if(userjwt!==null||userjwt!==undefined){
+    userjwt.tokenId=null;    
     await userjwt.save().then(()=>{
         res.status(200)
     }).catch(()=>res.status(401))
+}
+else res.status(403)
 })
 router.get('/issignin',checkToken2)
 
