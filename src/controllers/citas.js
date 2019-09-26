@@ -39,7 +39,7 @@ postCita:async(req,res)=>{
     newdata.doctor =doctorExt;
     newdata.patient =patientData;
 
-    newdata.save().catch(e=>{
+    await newdata.save().catch(e=>{
         console.log("error");
         return res.status(404).json( {success:false});
     })
@@ -47,11 +47,11 @@ postCita:async(req,res)=>{
     doctorExt.patient.push(data);
     patientData.citas.push(data);
     
-    doctorExt.save().catch(e=>{
+    await doctorExt.save().catch(e=>{
         console.log("error");
         return res.status(404).json( {success:false});           
     })
-    patientData.save().catch(e=>{
+    await patientData.save().catch(e=>{
         console.log("error");
         return res.status(404).json( {success:false});           
     })
@@ -75,7 +75,7 @@ postCitaEmployee:async(req,res)=>{
     newdata.doctor =doctorExt;
     newdata.patient =employeeData;
     newdata.price *= deduction;
-    newdata.save().catch(e=>{
+    await newdata.save().catch(e=>{
         console.log("error");
         return res.status(404).json( {success:false});
     })    
@@ -83,11 +83,11 @@ postCitaEmployee:async(req,res)=>{
     doctorExt.patient.push(data);
     employeeData.citas.push(data);
     
-    doctorExt.save().catch(e=>{
+    await doctorExt.save().catch(e=>{
         console.log("error");
         return res.status(404).json( {success:false});
     })
-    employeeData.save().catch(e=>{
+    await employeeData.save().catch(e=>{
         console.log("error");
         return res.status(404).json( {success:false});
     })
@@ -100,7 +100,7 @@ putCita:async(req,res)=>{
     //gualda cambios antes del update
     await Cita.findById(id).then(async(res)=>{        
         const newUpdate = new Update(res);
-        newUpdate.save();
+        await newUpdate.save();
     })
     //actualiza
     await Cita.findByIdAndUpdate(id,newData).then(async(res)=>{
@@ -109,7 +109,7 @@ putCita:async(req,res)=>{
         })        
         //agrega ultima fecha actualizacion
         updateDate.Updatecount.push(Date.now())
-        updateDate.save();
+        await updateDate.save();
     })
     .catch(e=>{        
         return res.status(404).json( {success:false});
@@ -134,12 +134,12 @@ deleteCita:async(req,res)=>{
                   
          if(newCitas){
             data.citas = newCitas;
-            data.save().then(async()=>{                
+            await data.save().then(async()=>{                
                 const datacita = await Cita.findById(id).catch(e=>{                
                     return res.status(404).json( {success:false});          
                 })
                 datacita.delete=true;                  
-                datacita.save().catch(e=>{                
+                await datacita.save().catch(e=>{                
                     return res.status(404).json( {success:false});
                 })
                 })
@@ -169,12 +169,12 @@ deleteCitaEmployee:async(req,res)=>{
               
     if(newCitas){
         data.citas = newCitas;
-        data.save().then(async()=>{
+        await data.save().then(async()=>{
             const datacita = await Cita.findById(id).catch(e=>{                
                 return res.status(404).json( {success:false});
             })
             datacita.delete=true;                  
-            datacita.save().catch(e=>{            
+            await datacita.save().catch(e=>{            
                 return res.status(404).json( {success:false});           
             })
             })
