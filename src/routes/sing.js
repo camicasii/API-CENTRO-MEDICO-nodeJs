@@ -13,17 +13,18 @@ router.delete('/signout',checkToken, async(req,res)=>{
     try{    
     const userjwt = await User.findOne({tokenId:req.headers.authorization})
     console.log("busco user");
-    console.log(userjwt);
-        
+    console.log(userjwt);        
     if(userjwt!==null||userjwt!==undefined){
         console.log("paso el si");
         
     userjwt.tokenId="";  
     console.log("paso el si");
     console.log(userjwt);
+    //res.status(200)
+    await userjwt.save().then(()=>{
+        res.status(200)
+    })
     
-    userjwt.save()
-    res.status(200)
     }
 }catch{
     res.status(401)}
