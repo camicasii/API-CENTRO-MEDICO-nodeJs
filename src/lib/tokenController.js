@@ -28,7 +28,7 @@ module.exports={
     const check= await User.findOne({tokenId:req.headers.authorization})    
     console.log("my",check);
         
-    if(userjwt!==null||userjwt!==undefined) next();
+    if(check!==null||check!==undefined) next();
       else res.status(401).json({error:"jwt false"})
     }
     catch(err){
