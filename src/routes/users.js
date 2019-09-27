@@ -1,15 +1,15 @@
 const router =  require('express').Router(); 
 const {getData, getDatas, postData, putData, deleteData } = require('../controllers/users');
-const  {checkToken} =  require('../lib/tokenController');
 
 
-router.get('/',checkToken,getDatas)
 
-router.get('/:id',checkToken,getData)
+router.get('/',getDatas)
 
-router.put('/:id',checkToken,putData)
+router.get('/:id',getData)
 
-router.delete('/:id',checkToken,deleteData)
+router.put('/:id',putData)
+
+router.delete('/:id',deleteData)
 
 
 module.exports = router;

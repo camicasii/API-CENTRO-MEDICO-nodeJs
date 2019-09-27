@@ -1,14 +1,14 @@
 const router =  require('express').Router(); 
 const {getData, getDatas, postData, putData, deleteData } = require('../controllers/patient');
-const  {checkToken} =  require('../lib/tokenController');
-router.get('/',checkToken,getDatas)
 
-router.get('/:id',checkToken,getData)
+router.get('/',getDatas)
 
-router.post('/',checkToken,postData)
+router.get('/:id',getData)
 
-router.put('/:id',checkToken,putData)
+router.post('/',postData)
 
-router.delete('/:id',checkToken,deleteData)
+router.put('/:id',putData)
+
+router.delete('/:id',deleteData)
 
 module.exports = router;
