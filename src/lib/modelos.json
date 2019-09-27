@@ -1,0 +1,53 @@
+[
+    { 
+        "username"  :"camicasii",
+        "firstName" : "Jhonattan",
+        "lastName"	: "Ramirez",
+        "age"		: "28",
+        "genero"	: "Masculino",
+        "dni"		: "23924249",
+        "email" 	: "camicasii@hotmail.com",
+        "phone" 	: "04267830185",
+        "direction" : "Urb san jose"
+    },
+    { 
+        "username"  :"camicasii",
+        "firstName" : "Jhonattan sadfsdaf",
+        "lastName"	: "Ramirez",
+        "age"		: "28",
+        "genero"	: "Masculino",
+        "dni"		: "23924249",
+        "email" 	: "camicasii@hotmail.com",
+        "phone" 	: "04267830185",
+        "direction" : "Urb san jose",
+        "university":"Universidad de oriente",
+        "License"   :"SSMP652182185",
+        "specialty" :"Cardiologo",
+        "job"		:"Residente",
+        "salary"	:"2500",
+        "contract_date_start":"2019-11-01"
+    },
+    { 
+        "date"      :"2019-11-01",
+        "symptom"	:"dasfgsagsdagadfgasd",
+        "attended"  :"true",
+        "price"		:80,
+        "refPay"	:"XZCV4457854",
+        "refFile"	:"/ASDFA/SADFASF/ASDF"
+        
+    },    
+    {      "username"  :"camicasii",
+        "firstName" : "Jhonattan",
+        "lastName"	: "Ramirez",
+        "age"		: "28",
+        "genero"	: "Masculino",
+        "dni"		: "23924249",
+        "email" 	: "camicasii@hotmail.com",
+        "phone" 	: "04267830185",
+        "direction" : "Urb san jose",
+        "job"		:"Residente",
+        "salary"	:"2500",
+        "contract_date_start":"2019-11-01"
+    }
+
+]
