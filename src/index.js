@@ -4,13 +4,13 @@ require('dotenv').config();
 const express =  require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-//const {cors} = require('./lib/conrConf')
+const {cors} = require('./lib/conrConf')
 const session = require('express-session')
 const passport= require('passport');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require("body-parser");
 //const cookieSession = require('cookie-session');
-const cors =  require('cors');
+//const cors =  require('cors');
 
 const app = express();
 console.log(process.env.DB_HOST_MONGO_ATLAS);
@@ -33,7 +33,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(express.raw());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());//
+app.use(cors);//
 
 app.use(session({
     secret: process.env.SECRET,

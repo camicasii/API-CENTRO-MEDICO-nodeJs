@@ -36,17 +36,11 @@ module.exports={
       next();
     }
   },
-  sendToken:async(req,res)=>{  
-  console.log(
-      req.body.username)
-    const userjwt = await User.findOne({username:req.body.username}).catch((e)=>console.log("ayudaaaa"))
-    console.log(
-     userjwt)
+  sendToken:async(req,res)=>{    
+    const userjwt = await User.findOne({username:req.body.username}).catch((e)=>console.log("ayudaaaa"))    
     
       if(userjwt){
-        userjwt.password = null;
-        console.log("Asasa");
-        
+        userjwt.password = null;                
         jwt.sign(userjwt.toJSON(), process.env.SECRET, { expiresIn: 31556926 }, async(err, token) => {
           let userjwt2 = await User.findOne({username:req.body.username})
           userjwt2.tokenId= token

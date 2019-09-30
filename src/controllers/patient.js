@@ -22,7 +22,7 @@ module.exports={
             console.log("error");
             return res.status(404).json( {success:false})            
         })
-        res.status(201).json(data);
+        res.status(201).json(newdata);
     },
     putData:async(req,res,next)=>{
         const newData = req.body
