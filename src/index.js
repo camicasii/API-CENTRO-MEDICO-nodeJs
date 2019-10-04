@@ -63,6 +63,7 @@ app.use( '/api/', require('./routes/sing'));
 //Static file
 app.use('/public',express.static(__dirname +'/public'));
 
+
 //Server Listening
 app.listen(app.get('port'),()=>{
     console.log('Server on port:', app.get('port'));    

@@ -38,18 +38,30 @@ module.exports={
   },
   sendToken:async(req,res)=>{    
     const userjwt = await User.findOne({username:req.body.username}).catch((e)=>console.log("ayudaaaa"))    
+    console.log("senToken");
     
       if(userjwt){
-        userjwt.password = null;                
-        jwt.sign(userjwt.toJSON(), process.env.SECRET, { expiresIn: 31556926 }, async(err, token) => {
-          let userjwt2 = await User.findOne({username:req.body.username})
-          userjwt2.tokenId= token
-          await userjwt2.save()
-          res.status(200).json({
-            success: true,
-            token: "Bearer " + token
-          });
-        })     
+        userjwt.password = null;   
+        userjwt.tokenId = null;   
+
+                  
+        jwt.sign(
+          userjwt.toJSON(),
+          process.env.SECRET,
+          { expiresIn: 31556926 },
+          async (err, token) => {
+            let userjwt2 = await User.find({ username: req.body.username });
+            userjwt2[0].tokenId = token.toString()
+            console.log(userjwt2[0].tokenId);
+            
+            await  User.findByIdAndUpdate(userjwt2[0]._id,userjwt2[0]).then(res=>console.log(res)
+            );
+            res.status(200).json({
+              success: true,
+              token: "Bearer " + token
+            });
+          }
+        );     
       }
      else{ 
        res.status(401).json({
